@@ -1,16 +1,27 @@
 <template>
   <div>
-    <p>hi</p>
-    <button class="button button-primary" @click="sinUp">sin UP</button>
-    <button class="button button-primary" @click="sinIn">sin in</button>
-    <button class="button button-primary" @click="sinOut">sin out</button>
-    <div>
-      {{credantial}}
+    <button class="button button-primary" @click="sinIn" v-if="!firebaseUser">sin in</button>
+    <button class="button button-primary" @click="sinOut" v-if="firebaseUser">sin out</button>
+    <div v-if="firebaseUser">
+
+      <client-only>
+    <pre>
+      {{ firebaseUser }}
+    </pre>
+      </client-only>
     </div>
+    <div v-if="!firebaseUser">
+      user is sign out
+    </div>
+
   </div>
 </template>
 
 <script setup>
+
+
+const firebaseUser = useFirebaseUser()
+
 const credantial = ref()
 const sinUp = async () => {
   const email = "aldi@gmail.com";

@@ -1,4 +1,4 @@
-import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";
 
 
 export const createUser = async (email, password) => {
@@ -10,6 +10,7 @@ export const createUser = async (email, password) => {
         });
     return credentials
 }
+
 export const signInUser = async (email, password) => {
     const auth = getAuth();
     const credentials = await signInWithEmailAndPassword(auth, email, password)
@@ -19,25 +20,24 @@ export const signInUser = async (email, password) => {
         });
     return credentials
 }
-export const initUser = async () => {
 
+export const initUser = async () => {
     const auth = getAuth();
+    const firebaseUser = useFirebaseUser()
+
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/firebase.User
-            const uid = user.uid;
-            console.log(user)
-        } else {
-
+         } else {
         }
+        firebaseUser.value = user
+
     });
 }
 export const signOutUser = async () => {
 
     const auth = getAuth();
     const result = await auth.signOut();
-    console.log('signOut: ' ,result)
+    console.log('signOut: ', result)
     return result
 
 }
