@@ -1,7 +1,7 @@
 <template>
   <div>
     <section
-        class="hero is-grey is-fullheight is-justify-content-flex-start"
+        class="hero is-primary is-fullheight is-justify-content-flex-start"
     >
       <div class="has-text-centered mt-6">
         <p class="title">Firebase/Nuxt3 Auth</p>
