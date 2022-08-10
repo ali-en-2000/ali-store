@@ -1,44 +1,97 @@
 <template>
   <div>
-    <div>
-      <nuxt-link to="/secret">go to secret page</nuxt-link>
-    </div>
-    <button class="button button-primary" @click="sinIn" v-if="!firebaseUser">sin in</button>
-    <button class="button button-primary" @click="sinOut" v-if="firebaseUser">sin out</button>
-    <div v-if="firebaseUser">
+    <Header/>
+    <div class="home">
+      <div class="home__container">
+        <img
+            class="home__image"
+            src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
+            alt=""
+        />
 
-      <client-only>
-    <pre>
-      {{ firebaseUser }}
-    </pre>
-      </client-only>
-    </div>
-    <div v-if="!firebaseUser">
-      user is sign out
+        <div class="home__row">
+          <product
+              :id=12321341
+              title="The Lean Startup: How Constant Innovation Creates Radically Successful Businesses Paperback"
+              :price=11.96
+              :rating=3
+              image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._SX325_BO1,204,203,200_.jpg"
+          />
+          <product
+              :id=49538094
+              title="Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer with K-beater, Dough Hook and Whisk, 5 Litre Glass Bowl"
+              :price=239.0
+              :rating=4
+              image="https://images-na.ssl-images-amazon.com/images/I/81O%2BGNdkzKL._AC_SX450_.jpg"
+          />
+        </div>
+
+        <div class="home__row">
+          <product
+              :id=4903850
+              title="Samsung LC49RG90SSUXEN 49' Curved LED Gaming Monitor"
+              :price=199.99
+              :rating=4
+              image="https://images-na.ssl-images-amazon.com/images/I/71Swqqe7XAL._AC_SX466_.jpg"
+          />
+          <product
+              :id=23445930
+              title="Amazon Echo (3rd generation) | Smart speaker with Alexa, Charcoal Fabric"
+              :price=98.99
+              :rating=5
+              image="https://media.very.co.uk/i/very/P6LTG_SQ1_0000000071_CHARCOAL_SLf?$300x400_retinamobilex2$"
+          />
+          <product
+              :id=3254354345
+              title="New Apple iPad Pro (12.9-inch, Wi-Fi, 128GB) - Silver (4th Generation)"
+              :price=598.99
+              :rating=4
+              image="https://images-na.ssl-images-amazon.com/images/I/816ctt5WV5L._AC_SX385_.jpg"
+          />
+        </div>
+
+        <div class="home__row">
+          <product
+              :id=90829332
+              title="Samsung LC49RG90SSUXEN 49 Curved LED Gaming Monitor - Super Ultra Wide Dual WQHD 5120 x 1440"
+              :price=1094.98
+              :rating=2
+              image="https://images-na.ssl-images-amazon.com/images/I/6125mFrzr6L._AC_SX355_.jpg"          />
+        </div>
+      </div>
     </div>
 
   </div>
 </template>
 
-<script setup>
-
-
-const firebaseUser = useFirebaseUser()
-
-const credantial = ref()
-const sinUp = async () => {
-  const email = "aldi@gmail.com";
-  const password = "123456";
-  credantial.value = await createUser(email, password)
-}
-const sinIn = async () => {
-  const email = "ali@gmail.com";
-  const password = "123456";
-  credantial.value = await signInUser(email, password)
-}
-const sinOut = async () => {
-  credantial.value = await signOutUser()
+<script>
+import Header from "../components/header";
+import product from "../components/product";
+export default {
+  components: {Header,product},
 }
 </script>
-<style>
+<style scoped>
+.home {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1500px;
+}
+
+.home__row {
+  display: flex;
+  z-index: 1;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.home__image {
+  width: 100%;
+  z-index: -1;
+  margin-bottom: -150px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
 </style>
