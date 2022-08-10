@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "bulma": "^0.9.4",
-    "firebase": "^9.9.1"
+    "firebase": "^9.9.1",
+    "yup": "^0.32.11",
+    "@vee-validate/rules": "^4.5.11",
+    "vee-validate": "^4.5.11"
   }
 }
